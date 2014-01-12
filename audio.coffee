@@ -26,7 +26,14 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext
     else
       callback?(buffer)
 
-  playBuffer: (buffer, {at, file}) ->
+  decodeAndPlay: (audioData, options={}) ->
+    options.file ?= "decoded"
+    @context.decodeAudioData audioData, (buffer) =>
+      BUFFERS[options.file] = buffer
+      @playBuffer(buffer, options)
+
+  playBuffer: (buffer, {at, file, connectTo}) ->
+    connectTo ?= @gainNode
     at ?= @context.currentTime
     if file?
       SOURCES[file] ?= {}
@@ -34,8 +41,8 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext
     else
       source = @context.createBufferSource()
     source.buffer = buffer
-    source.connect(@gainNode)
-    #console.log "starting #{file} at #{at}"
+    @connect(source, to: connectTo)
+    console.log "starting #{file} at #{at} connected to #{connectTo.constructor.name}"
     source.start(at)
 
   playSound: (file, {at}={}) ->
@@ -54,11 +61,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext
 
   init: ->
     @gainNode = @context.createGain()
-    @filter = @context.createBiquadFilter()
-
-    @gainNode.connect(@filter)
-    @filter.connect(@context.destination)
-
+    @connect(@gainNode)
 
   osc: (freq) ->
     oscillator = @context.createOscillator()

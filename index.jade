@@ -1,12 +1,25 @@
-h1 Audio Chart
+h1 Audio API
+//- p
+//-   strong Frequency:
+//-   input#freq(type='range', min='1', max='100')
+//-   strong Wave type:
+//-   button.osc-type(value='0', style='font-weight:bold;') Sine
+//-   button.osc-type(value='1') Square
+//-   button.osc-type(value='2') Sawtooth
+//-   button.osc-type(value='3') Triangle
 p
-  strong Frequency:
-  input#freq(type='range', min='1', max='100')
-  strong Wave type:
-  button.osc-type(value='0', style='font-weight:bold;') Sine
-  button.osc-type(value='1') Square
-  button.osc-type(value='2') Sawtooth
-  button.osc-type(value='3') Triangle
+  strong Now Playing:&nbsp;
+  span#now-playing (nothing)
+  br
+  button#stop Stop
+p
+  strong Upload Files:
+  input#file(type='file' name='files[]' multiple=true)
+  ul#contents
+//- p
+//-   strong Playlist
+//-   ul#playlist
+
 div#audio-chart
 
 
