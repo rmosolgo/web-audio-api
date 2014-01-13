@@ -1,24 +1,31 @@
-h1 Audio API
-//- p
-//-   strong Frequency:
-//-   input#freq(type='range', min='1', max='100')
-//-   strong Wave type:
-//-   button.osc-type(value='0', style='font-weight:bold;') Sine
-//-   button.osc-type(value='1') Square
-//-   button.osc-type(value='2') Sawtooth
-//-   button.osc-type(value='3') Triangle
+h2 Now Playing:&nbsp;
+  small#now-playing (nothing)
 p
-  strong Now Playing:&nbsp;
-  span#now-playing (nothing)
-  br
+  span.strong Volume:&nbsp;
+  input#volume(type='range', min='0', max='100')
   button#stop Stop
-p
-  strong Upload Files:
+
+p.no-border
+  span.strong Upload Files:
   input#file(type='file' name='files[]' multiple=true)
-  ul#contents
-//- p
-//-   strong Playlist
-//-   ul#playlist
+ul#contents
+
+p
+  span.strong Frequency:
+  input#freq(type='range', min='1', max='100')
+  br
+  span.strong Wave type:
+  button.osc-type(value='0', style='font-weight:bold;') Sine
+  button.osc-type(value='1') Square
+  button.osc-type(value='2') Sawtooth
+  button.osc-type(value='3') Triangle
+  br
+  button#play-osc Play
+
+p
+  span.strong Play a file:
+  button.load-file(data-file-name='/samples/keys.mp3') Rhodes Piano
+  button.load-file(data-file-name='/samples/synth.mp3') Synth song
 
 div#audio-chart
 

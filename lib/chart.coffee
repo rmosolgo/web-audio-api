@@ -25,7 +25,7 @@ C =
   width: ->
     $(@CONTAINER).width()
   height: ->
-    400
+    250
 
   drawGraph: (freqArray) ->
     data = Array.prototype.slice.call(freqArray)

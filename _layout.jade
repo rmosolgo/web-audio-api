@@ -1,12 +1,12 @@
 doctype
 html
   head
-    link(rel="stylesheet", href="/main.css")
+    link(rel="stylesheet", href="/lib/main.css")
     script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.13/d3.min.js")
-    script(src='/audio.js')
-    script(src='/chart.js')
-    script(src='/file.js')
+    script(src='/lib/audio.js')
+    script(src='/lib/chart.js')
+    script(src='/lib/file.js')
     script(src='/program.js')
     style.
       table {
@@ -14,3 +14,6 @@ html
       }
   body
     != yield
+    p Source on&nbsp;
+      a(href='https://github.com/rmosolgo/web-audio-api') Github
+

@@ -36,9 +36,12 @@ dataURIToBlob = (dataURI) ->
 
     $('#stop').on "click", (e) ->
       $('#now-playing').text("(nothing)")
-      S.stopSound("decoded")
+      F.stop()
 
   staged: {}
+
+  stop: ->
+    S.stopSound()
 
   handleSelect: (evt, {list}={}) ->
     @list ?= list
@@ -59,7 +62,7 @@ dataURIToBlob = (dataURI) ->
       @list.html(html)
 
   playAudio: (options={}) ->
-    S.stopSound("decoded")
+    F.stop()
     if options.playlistId
       options.fileObject = @staged[options.playlistId] || @playlist[options.playlistId]
     options.fileObject ?= @currentFiles[0]

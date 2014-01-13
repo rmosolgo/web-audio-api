@@ -1,9 +1,3 @@
-@SOUNDS =
-  keys: "/keys.mp3"
-  kick: "/kick.wav"
-  snare: "/snare.wav"
-  song: "/song.mp3"
-
 @BUFFERS = {}
 @SOURCES = {}
 
@@ -32,7 +26,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext
       BUFFERS[options.file] = buffer
       @playBuffer(buffer, options)
 
-  playBuffer: (buffer, {at, file, connectTo}) ->
+  playBuffer: (buffer, {at, file, connectTo}={}) ->
     connectTo ?= @gainNode
     at ?= @context.currentTime
     if file?
@@ -42,26 +36,28 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext
       source = @context.createBufferSource()
     source.buffer = buffer
     @connect(source, to: connectTo)
-    console.log "starting #{file} at #{at} connected to #{connectTo.constructor.name}"
     source.start(at)
 
   playSound: (file, {at}={}) ->
-    console.log "playing #{file} at #{at}"
     @loadSound file, (buffer) =>
       @playBuffer(buffer, {at: at, file: file})
 
   stopSound: (file, {at}={}) ->
     at ?= @context.currentTime
-    for started_at, buffer of SOURCES[file]
-      buffer.stop(at)
-      delete(SOURCES[file][started_at])
+    if file?
+      for started_at, buffer of SOURCES[file]
+        buffer.stop(at)
+        delete(SOURCES[file][started_at])
+    else
+      for file, buffers of SOURCES
+        @stopSound(file,{at: at})
 
   setVolume: (volume) ->
     @gainNode.gain.value = volume
 
   init: ->
     @gainNode = @context.createGain()
-    @connect(@gainNode)
+    @connect(@gainNode, to: @context.destination)
 
   osc: (freq) ->
     oscillator = @context.createOscillator()
@@ -83,7 +79,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext
     data[index]
 
   connect: (node, {to}={}) ->
-    to ?= @context.destination
+    to ?= @gainNode
     console.log "connecting #{node.constructor.name} to #{to.constructor.name}"
     node.connect(to)
 
