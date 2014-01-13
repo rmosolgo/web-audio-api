@@ -13,8 +13,12 @@ Live on [Heroku](http://rdm-audio.herokuapp.com/).
 
 __`/lib/audio.coffee`__ handles loading files from the server and starting and stopping buffers.
 
-__`/lib/file.coffee`__ handles working with `File` & `FileReader` objects to list them on the page and play them with the code from `audio.coffee`.
+
+__`/lib/file.coffee`__  handles working with `File` & `FileReader` objects to list them on the page and play them with the code from `audio.coffee`.
 
 __`/lib/chart.coffee`__ provides the chart for the analyser node
 
 __`/program.coffee`__ is a sloppy mess to tie it all together.
+
+ [screenshot](https://github.com/rmosolgo/web-audio-api/blob/master/screenshot.png)
+
