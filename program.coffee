@@ -11,7 +11,7 @@ oscPlaying = false
 
 oscNowPlaying = ->
   return unless oscPlaying
-  oscString = "Oscilator: #{osc.type} wave @ #{Math.round(osc.frequency.value)} Hz"
+  oscString = "#{osc.type} wave @ #{Math.round(osc.frequency.value)} Hz"
   $('#now-playing').text(oscString)
 
 startOsc = ->
