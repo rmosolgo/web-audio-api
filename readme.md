@@ -20,5 +20,5 @@ __`/lib/chart.coffee`__ provides the chart for the analyser node
 
 __`/program.coffee`__ is a sloppy mess to tie it all together.
 
- [screenshot](https://github.com/rmosolgo/web-audio-api/blob/master/screenshot.png)
+![screenshot](https://github.com/rmosolgo/web-audio-api/blob/master/screenshot.png)
 
